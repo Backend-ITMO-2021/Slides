@@ -9,6 +9,10 @@ def hello(
 }
 hello(None)
 hello(Some("Ivan"))
+Some("1")
+None
+Option("1")
+Option(null)
 
 Some("Ivan").getOrElse("<unknown>")
 None.getOrElse("<unknown>")

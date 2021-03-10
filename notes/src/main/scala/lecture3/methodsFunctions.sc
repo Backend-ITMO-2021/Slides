@@ -38,3 +38,5 @@ myLoop(start = 5, end = 10) { i =>
   println(s"i has value $i")
 }
 
+myLoop(start = 5, end = 10)(_)
+

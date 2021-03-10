@@ -12,3 +12,5 @@ java.lang.Integer
 
 1.0 / 3.0
 1.0F / 3.0F
+10.3 + 10.4
+BigDecimal(10.3) + 10.4

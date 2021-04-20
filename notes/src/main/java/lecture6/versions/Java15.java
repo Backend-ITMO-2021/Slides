@@ -1,5 +1,6 @@
 package lecture6.versions;
 
+/*
 public class Java15 {
   public static void main(String[] args) {
     String text = """
@@ -11,3 +12,4 @@ public class Java15 {
     System.out.println(text);
   }
 }
+*/

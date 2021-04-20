@@ -6,6 +6,7 @@ scalaVersion := "2.13.5"
 
 libraryDependencies += "com.lihaoyi" %% "requests" % "0.6.5"
 libraryDependencies += "org.kohsuke" % "github-api" % "1.125"
+libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.3.3"
 
 javacOptions ++= Seq("-source", "15", "-target", "15", "-Xlint")
 

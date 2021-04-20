@@ -24,3 +24,4 @@ def loop(i: Int, sum: Int, limit: Int): Int =
   else loop(i + 1, i + sum, limit)
 
 //println(List(2 + 1, 3 * 2, 1 / 0, 5 - 4).length)
+

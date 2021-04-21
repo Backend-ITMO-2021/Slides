@@ -35,7 +35,7 @@ trait Functor[F[_]] {
   }
 }
 
-trait Applicative[F[_]] extends Functor[F] { self =>
+trait Applicative[F[_]] extends Functor[F] {
   def point[A](a: A): F[A]
   def ap[A, B](fa: F[A])(f: F[A => B]): F[B]
 
@@ -51,5 +51,20 @@ trait Applicative[F[_]] extends Functor[F] { self =>
 
     def interchange[A, B](f: F[A => B], a: A): Boolean =
       ap(point(a))(f) == ap(f)(point((f: A => B) => f(a)))
+  }
+}
+
+trait Monad[F[_]] extends Applicative[F] {
+  def point[A](a: A): F[A]
+  def flatMap[A, B](fa: F[A])(f: A => F[B]): F[B]
+
+  def map[A, B](fa: F[A])(f: A => B): F[B] = flatMap(fa)(a => point(f(a)))
+  def ap[A, B](fa: F[A])(f: F[A => B]): F[B] = flatMap(f)(x => map(fa)(x))
+
+  trait MonadLaws {
+    def leftIdentity[A, B](a: A, f: A => F[B]): Boolean = flatMap(point(a))(f) == f(a)
+    def rightIdentity[A](a: F[A]): Boolean = flatMap(a)(point(_: A)) == a
+    def associativity[A, B, C](a: F[A], f: A => F[B], g: B => F[C]): Boolean =
+      flatMap(flatMap(a)(f))(g) == flatMap(a)(x => flatMap(f(x))(g))
   }
 }

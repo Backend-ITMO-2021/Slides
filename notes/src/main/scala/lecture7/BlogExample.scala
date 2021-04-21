@@ -28,9 +28,9 @@ object BlogExample {
   val blogMonad: Monad[BlogM] = new Monad[BlogM] {
     def point[A](a: A): BlogM[A] = BlogM(b => (a, b))
     def flatMap[A, B](fa: BlogM[A])(f: A => BlogM[B]): BlogM[B] = BlogM(
-      b => {
-        val (r, b1) = fa.action(b)
-        val h = f(r)
+      blog => {
+        val (a, b1) = fa.action(blog)
+        val h = f(a)
         h.action(b1)
       }
     )
@@ -44,12 +44,14 @@ object BlogExample {
         )
       )
     )
+  val blog: Blog = Blog(List(Post("1", "1")), 0)
+  val result: ((Post, Post), Blog) = read12AndNew1.action(blog)
 
   val optionMonad: Monad[Option] = new Monad[Option] {
     def point[A](a: A): Option[A] = Some(a)
     def flatMap[A, B](fa: Option[A])(f: A => Option[B]): Option[B] =
       fa match {
-        case Some(value) => f(value)
+        case Some(a) => f(a)
         case None => None
       }
   }

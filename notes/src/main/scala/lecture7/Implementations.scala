@@ -35,7 +35,7 @@ object Implementations {
   lazy val optionFunctor: Functor[Option] = new Functor[Option] {
     def map[A, B](fa: Option[A])(f: A => B): Option[B] =
       fa match {
-        case Some(value) => Some(f(value))
+        case Some(a) => Some(f(a))
         case None => None
       }
   }
@@ -48,15 +48,23 @@ object Implementations {
     }
   }
 
+  val times3: Option[Int => Int] =
+    Some(3).map(x => (y: Int) => x * y)
+
+  val timeList: List[Int => Int] = List(1,2,3,4).map(x => (y: Int) => x * y)
+  timeList.map(x => x(9)) // List(9, 18, 27, 36)
+
+
   lazy val optionApplicative: Applicative[Option] = new Applicative[Option] {
     def point[A](a: A): Option[A] = Some(a)
     def ap[A, B](fa: Option[A])(f: Option[A => B]): Option[B] =
       f match {
-        case Some(value) => map(fa)(value)
+        case Some(a) => map(fa)(a)
         case None => None
       }
     def map[A, B](fa: Option[A])(f: A => B): Option[B] = optionFunctor.map(fa)(f)
   }
+
 
   lazy val listApplicative: Applicative[List] = new Applicative[List] {
     def point[A](a: A): List[A] = List(a)

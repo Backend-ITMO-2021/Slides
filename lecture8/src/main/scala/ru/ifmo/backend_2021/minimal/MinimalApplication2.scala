@@ -1,3 +1,6 @@
+package ru.ifmo.backend_2021.minimal
+
+import ru.ifmo.backend_2021.ApplicationBootstrap
 import scalatags.Text
 import scalatags.Text.all._
 

@@ -1,4 +1,5 @@
 import TestUtils.withServer
+import ru.ifmo.backend_2021.minimal.MinimalApplication
 import utest.{ArrowAssert, TestSuite, Tests, test}
 
 object MinimalTest extends TestSuite {

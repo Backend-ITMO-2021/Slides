@@ -1,3 +1,6 @@
+package ru.ifmo.backend_2021.mock
+
+import ru.ifmo.backend_2021.ApplicationBootstrap
 import scalatags.Text
 import scalatags.Text.all._
 
@@ -23,6 +26,11 @@ object MockApplication extends cask.MainRoutes {
       )
     )
   )
+
+  @cask.post("/do-thing")
+  def doThing(request: cask.Request): String = {
+    request.text().reverse
+  }
 
   log.debug(s"Starting at $serverUrl")
   initialize()

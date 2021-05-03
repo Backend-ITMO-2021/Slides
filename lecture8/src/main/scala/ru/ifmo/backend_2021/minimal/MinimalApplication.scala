@@ -1,4 +1,4 @@
-
+package ru.ifmo.backend_2021.minimal
 
 object MinimalApplication extends cask.MainRoutes {
   @cask.get("/")

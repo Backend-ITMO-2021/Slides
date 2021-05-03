@@ -1,4 +1,5 @@
 import TestUtils.withServer
+import ru.ifmo.backend_2021.mock.MockApplication
 import utest.{TestSuite, Tests, test}
 
 object MockTest extends TestSuite {
